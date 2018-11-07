@@ -1,0 +1,40 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>qtquickcontrols2.conf</file>
+        <file>Pages/Login/FrmLogin.qml</file>
+        <file>Pages/Home/FrmHome.qml</file>
+        <file>Pages/Componnet/Button/CustomeButton.qml</file>
+        <file>Style/Style.qml</file>
+        <file>Fonts/iranSanceBold.ttf</file>
+        <file>Fonts/iranSanceLight.ttf</file>
+        <file>Fonts/iranSanceMedium.ttf</file>
+        <file>Image/login/pass.svg</file>
+        <file>Image/login/user.svg</file>
+        <file>Image/Logo/logo.png</file>
+        <file>Pages/Componnet/Header/Header.qml</file>
+        <file>Image/Header/back.svg</file>
+        <file>Image/Header/drawer.svg</file>
+        <file>Pages/Componnet/Drawer/Drawer.qml</file>
+        <file>Pages/OtherPages/FrmNewContact.qml</file>
+        <file>Pages/OtherPages/FrmDefultPage.qml</file>
+        <file>Pages/OtherPages/FrmDeleteContact.qml</file>
+        <file>Pages/OtherPages/FrmContactList.qml</file>
+        <file>Image/Drawer/delete.svg</file>
+        <file>Image/Drawer/exit.svg</file>
+        <file>Image/Drawer/list.svg</file>
+        <file>Image/Drawer/new.svg</file>
+        <file>Image/Drawer/search.svg</file>
+        <file>Image/profile/user-1.svg</file>
+        <file>Image/profile/user-2.svg</file>
+        <file>Image/profile/user-3.svg</file>
+        <file>Image/profile/user-4.svg</file>
+        <file>Image/profile/user-5.svg</file>
+        <file>Image/profile/user-0.svg</file>
+        <file>Image/profile/user-6.svg</file>
+        <file>Image/profile/user-7.svg</file>
+        <file>Image/profile/user-8.svg</file>
+        <file>Image/profile/user-9.svg</file>
+        <file>Pages/OtherPages/FrmSearchContact.qml</file>
+    </qresource>
+</RCC>
