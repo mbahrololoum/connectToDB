@@ -4,7 +4,7 @@ ModelContactList::ModelContactList(QObject *parent) : QObject(parent)
 {}
 
 void ModelContactList::append(const QString name, const QString family, const QString phoneNumber,
-                                    const bool favority, const QString gender)
+                              const bool favority, const QString gender)
 {
     m_personlist.append(new EntityContactList(name, family, phoneNumber, favority, gender));
     emit modelChanged(model());

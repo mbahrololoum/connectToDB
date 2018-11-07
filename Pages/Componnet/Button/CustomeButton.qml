@@ -19,7 +19,7 @@ Item {
     //Rectangle to draw the button
     Rectangle {
         id: rectangleButton
-        color: buttonBackColor // Material.color(Material.Orange)
+        color: buttonBackColor
         anchors.fill: parent
         border.color: buttonBorderColor
         border.width: buttonBorderWide
