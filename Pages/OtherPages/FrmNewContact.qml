@@ -2,11 +2,11 @@ import QtQuick 2.9
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
 
-import "../Componnet/Button" as MyButtonComponnent
+import "../Component/Button" as MyButtonComponent
 
 Item {
 
-    Component.onCompleted: opacityAnimation.start()
+    Component.onCompleted: { opacityAnimation.start(); forceActiveFocus() }
 
     NumberAnimation { id: opacityAnimation;  target: flickable; properties: "opacity"; from: 0.0; to: 1.0; duration: 700 }
 
@@ -78,14 +78,10 @@ Item {
                 RadioButton { id: maleRadio;   text: qsTr("Male")                  }
             }
 
-            MyButtonComponnent.CustomeButton {
+            MyButtonComponent.CustomeButton {
                 id: myButtonRegister
                 buttonText: "Register"
-                enabled: true
-                buttonFontSize: 14
                 anchors.horizontalCenter: parent.horizontalCenter
-                width: controlWidth
-                buttonHeight: 35
                 onClicked: {
                     if(nameTxt.text === "" || familyTxt.text === "" || phoneNumberTxt.text.length !== 11)
                     {

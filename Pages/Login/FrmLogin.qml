@@ -2,7 +2,7 @@ import QtQuick 2.9
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
 
-import "../Componnet/Button" as MyButtonComponnent
+import "../Component/Button" as MyButtonComponnent
 
 Item {
     id: loginPages
@@ -36,7 +36,6 @@ Item {
                 font { family: myStyle.iranSanceFontL; pixelSize: 14 }
                 anchors.horizontalCenter: parent.horizontalCenter
                 width: controlWidth
-                height: 45
                 horizontalAlignment: Text.AlignLeft
                 anchors.top: logo.bottom
                 anchors.topMargin: 40
@@ -65,7 +64,6 @@ Item {
                 font { family: myStyle.iranSanceFontL; pixelSize: 14 }
                 anchors.horizontalCenter: parent.horizontalCenter
                 width: controlWidth
-                height: 55
                 horizontalAlignment: Text.AlignLeft
                 anchors.top: usernameTxt.bottom
                 anchors.topMargin: 0
@@ -90,13 +88,9 @@ Item {
             MyButtonComponnent.CustomeButton {
                 id: myButtonRegister
                 buttonText: "Login"
-                enabled: true
-                buttonFontSize: 14
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.top: passwordTxt.bottom
                 anchors.topMargin: 20
-                width: controlWidth
-                buttonHeight: 35
                 onClicked: {
                     if(connection.checkUser(usernameTxt.text, passwordTxt.text))
                     {
@@ -112,9 +106,9 @@ Item {
             }
 
             CheckBox {
-                id: chkRemmember
-                text: qsTr("Remmember")
-                checked: objLogin.remmember
+                id: chkRemember
+                text: qsTr("Remember")
+                checked: objLogin.remember
                 anchors.top: myButtonRegister.bottom; anchors.topMargin: 10
                 anchors.left: myButtonRegister.left;  anchors.leftMargin: 0
                 onCheckedChanged: connection.setSetting(checked, usernameTxt.text, passwordTxt.text)

@@ -21,6 +21,11 @@ ApplicationWindow {
 
     QtObject{
         id: objProfile
+        property string nameFamily : ""
+    }
+
+    QtObject{
+        id: objSearch
         property string name     : ""
         property string family   : ""
         property bool   favority : false
@@ -29,20 +34,20 @@ ApplicationWindow {
 
     QtObject{
         id: objLogin
-        property bool   remmember: false
+        property bool   remember : false
         property string username : ""
         property string password : ""
     }
 
-    Style { id: myStyle }
+    Style         { id: myStyle       }
 
     MessageDialog { id: messageDialog }
 
     Connection{
         id: connection
-        onSigSendProfile   : { objProfile.name = name; objProfile.family = family                                                             }
-        onSigSendOneContact: { objProfile.name = name; objProfile.family = family; objProfile.favority = favority; objProfile.gender = gender }
-        onSigGetSetting    : { objLogin.remmember = lastState; objLogin.username = username; objLogin.password = password                     }
+        onSigSendProfile   : { objProfile.nameFamily = name + " " + family                                                                }
+        onSigSendOneContact: { objSearch.name = name; objSearch.family = family; objSearch.favority = favority; objSearch.gender = gender }
+        onSigGetSetting    : { objLogin.remember = lastState; objLogin.username = username; objLogin.password = password                  }
     }
 
     // Manage Pages
@@ -51,17 +56,26 @@ ApplicationWindow {
         width: parent.width
         anchors.top: parent.top
         anchors.bottom: parent.bottom
-        //sourceComponent: login
         asynchronous: true
+        focus: true
         Keys.onReleased: {
-            if(event.key === Qt.Key_Back && mainLoader.sourceComponent === joined)
+            if(event.key === Qt.Key_Back && mainLoader.sourceComponent === frmHome)
             {
                 event.accepted = true;
-                mainLoader.sourceComponent = loginPage
+                mainLoader.sourceComponent = frmLogin
             }
         }
     }
 
     Component{ id:frmLogin; FrmLogin{ onSignalLogin: mainLoader.sourceComponent = frmHome  } }
     Component{ id:frmHome;  FrmHome { onBackClicked: mainLoader.sourceComponent = frmLogin } }
+
+    onClosing: {
+        if(mainLoader.sourceComponent === frmLogin)
+            close.accepted = true
+        if(mainLoader.sourceComponent === frmHome)
+            close.accepted = true
+        else
+            close.accepted = false
+    }
 }

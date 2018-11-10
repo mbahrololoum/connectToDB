@@ -2,28 +2,23 @@ import QtQuick 2.10
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
 
-//top Image of Content
 Flickable{
-    id: categoryPage
+    Component.onCompleted: forceActiveFocus()
     contentHeight: parent.height + 1
 
     GridView {
-        id: tableView
+        id: gridView
         anchors.fill: parent
-        anchors.rightMargin: 10
-        anchors.leftMargin: 10
-        anchors.topMargin: 10
-
-        model: categoryListModel
-        delegate: categoryDelegate
+        anchors.margins: 0
+        model: listModel
+        delegate: component
         cellHeight: width / 3
-        cellWidth: width / 3
+        cellWidth:  width / 3
         clip: true
-        interactive: false
     }
 
     ListModel{
-        id: categoryListModel
+        id: listModel
         ListElement{ title: "New Contact";    icon: "/Image/Drawer/new.svg";     objName: "newContact"    }
         ListElement{ title: "Delete Contact"; icon: "/Image/Drawer/delete.svg";  objName: "deleteContact" }
         ListElement{ title: "Contact List";   icon: "/Image/Drawer/list.svg";    objName: "courseList"    }
@@ -32,7 +27,7 @@ Flickable{
     }
 
     Component {
-        id: categoryDelegate
+        id: component
 
         Rectangle {
             id: myRec
@@ -42,8 +37,8 @@ Flickable{
             color: "transparent"
 
             Rectangle {
-                width: ( categoryPage.width < 400 ) ? parent.width  - 10 : 130
-                height: ( categoryPage.width < 400 ) ? parent.height - 10 : 130 //( categoryPage.height > categoryPage.width ) ?  parent.width - 15 : 85
+                width:  (parent.width < 400 ) ? parent.width  - 10 : 130
+                height: (parent.width < 400 ) ? parent.height - 10 : 130
                 radius: 10
                 anchors.top: parent.top
                 anchors.topMargin: 10
@@ -54,16 +49,14 @@ Flickable{
 
                 ColumnLayout{
                     width: parent.width
-                    height: 40+ labelCategory.contentHeight
+                    height: 40 + labelCategory.contentHeight
                     anchors.centerIn: parent
                     spacing: 5
 
                     Image {
                         id: myImage
-                        width: 40; height: 40
                         source:icon; sourceSize: "40x40"
                         Layout.alignment: Qt.AlignHCenter
-
                     }
 
                     Label {

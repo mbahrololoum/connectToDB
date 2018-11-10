@@ -48,21 +48,21 @@ signals:
 
 public slots:
 
-void setModelContactList(ModelContactList* modelContactList)
-{
-    if (m_modelContactList == modelContactList)
-        return;
+    void setModelContactList(ModelContactList* modelContactList)
+    {
+        if (m_modelContactList == modelContactList)
+            return;
 
-    m_modelContactList = modelContactList;
-    emit modelContactListChanged(m_modelContactList);
-}
+        m_modelContactList = modelContactList;
+        emit modelContactListChanged(m_modelContactList);
+    }
 
 private:
 
-    QSqlDatabase mDatabase;
-    QString dbLocation;
-    ModelContactList* m_modelContactList;
     QSettings setting;
+    QString dbLocation;
+    QSqlDatabase mDatabase;
+    ModelContactList* m_modelContactList;
 };
 
 #endif // CONNECTION_H

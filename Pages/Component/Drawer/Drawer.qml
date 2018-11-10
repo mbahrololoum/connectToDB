@@ -5,14 +5,13 @@ import QtGraphicalEffects 1.0
 
 Drawer{
     id: drawer
-    width:  0.66 * parent.width
-    height: parent.height
+    width:    0.66 * parent.width
+    height:   parent.height
     onClosed: if(selectExit) mainLoader.sourceComponent = frmLogin
 
     property bool selectExit: false
 
     ColumnLayout{
-        id: headerDrawer
         anchors.fill: parent
         spacing: 10
 
@@ -31,7 +30,7 @@ Drawer{
 
         Label {
             id: lbNameFamily
-            text: objProfile.name + " " + objProfile.family
+            text: objProfile.nameFamily
             font { family: myStyle.iranSanceFontM; pixelSize: 16 }
             Layout.preferredWidth: contentWidth;   Layout.preferredHeight: 22
             anchors.left: parent.left;             anchors.leftMargin:   20
@@ -42,10 +41,11 @@ Drawer{
 
         ListView{
             id: drawerListView
-            anchors.top:    lbNameFamily.bottom; anchors.topMargin   : 20
-            anchors.bottom: parent.bottom;       anchors.bottomMargin: 20
-            anchors.right:  parent.right;        anchors.rightMargin : 20
-            anchors.left:   parent.left;         anchors.leftMargin  : 20
+            anchors.top:    lbNameFamily.bottom
+            anchors.bottom: parent.bottom
+            anchors.right:  parent.right
+            anchors.left:   parent.left
+            anchors.margins: 20
             delegate: contactDelegate
             model:    contactModel
             clip: true
@@ -66,11 +66,9 @@ Drawer{
 
         RowLayout {
             spacing: 10
-            Layout.preferredHeight: 100
             height: 40
 
             Image {
-                anchors.verticalCenter: parent.verticalCenter
                 source: imgSource
                 sourceSize: "20x20"
                 asynchronous: true

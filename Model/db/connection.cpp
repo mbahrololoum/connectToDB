@@ -54,7 +54,7 @@ bool Connection::openDatabase()
 
             QSqlQuery query3;
             query3.prepare("INSERT INTO `tbl_users`(`username`,`password`,`name`,`family`) VALUES (:user, :pass, :name, :family )");
-            query3.bindValue(":user", "09");
+            query3.bindValue(":user", "09120000000");
             query3.bindValue(":pass", "1");
             query3.bindValue(":name", "John");
             query3.bindValue(":family", "Smit");
@@ -76,66 +76,7 @@ void Connection::closeDatabase()
 
 bool Connection::checkUser(const QString& user, const QString& pass)
 {
-    //    QString query("SELECT COUNT(*) FROM tbl_users WHERE username = '%1' AND password = '%2' ;");
-    //    query = query.arg(user).arg(pass);
-
-    //    QSqlQuery q(query);
-    //    q.exec();
-
-    //    if(query.next())
-    //    {
-    //        if(query.value(0).toInt() == 1)
-    //            return true;
-    //        else
-    //            return false;
-    //    }
-
-    //    return false;
-
-    //--------------------------------------
-
-    //    QSqlQuery query;
-    //    query.prepare("SELECT COUNT(*) FROM tbl_users WHERE username = ? AND password = ? ;");
-    //    query.bindValue(0, user);
-    //    query.bindValue(1, pass);
-
-    //    query.exec();
-    //    qDebug() << "ROW COUNT " << query.numRowsAffected();
-
-    //    if(query.next())
-    //    {
-    //        if(query.value(0).toInt() == 1)
-    //            return true;
-    //        else
-    //            return false;
-    //    }
-
-    //    return false;
-
-    // -------------------------
-
-    //    QSqlDatabase::database().transaction();
-
-    //    QSqlQuery query;
-    //    query.prepare("SELECT COUNT(*) FROM tbl_users WHERE username = ? AND password = ? ;");
-    //    query.bindValue(0, user);
-    //    query.bindValue(1, pass);
-    //    query.exec();
-
-    //    QSqlDatabase::database().commit();
-
-    //    if(query.first())
-    //    {
-    //        if(query.value(0).toInt() == 1)
-    //            return true;
-    //        else
-    //            return false;
-    //    }
-
-    //----------------------------------
-
     QSqlQuery query;
-
     query.prepare("SELECT name, family FROM tbl_users WHERE username = :usr AND password = :pass ;");
     query.bindValue(":usr", user);
     query.bindValue(":pass", pass);
@@ -152,14 +93,14 @@ bool Connection::checkUser(const QString& user, const QString& pass)
 
 void Connection::getSetting()
 {
-    setting.beginGroup("remmember");
+    setting.beginGroup("remember");
     emit sigGetSetting(setting.value("lastState").toBool(), setting.value("username").toString(), setting.value("password").toString());
     setting.endGroup();
 }
 
 void Connection::setSetting(const bool& state, const QString& username, const QString& password)
 {
-    setting.beginGroup("remmember");
+    setting.beginGroup("remember");
     setting.setValue("lastState", state);
     setting.setValue("username", state ? username : "");
     setting.setValue("password", state ? password : "");
@@ -169,7 +110,6 @@ void Connection::setSetting(const bool& state, const QString& username, const QS
 bool Connection::newContact(const QString &name, const QString &family, const QString &phoneNumber, const QString &favority, const QString &gender)
 {
     QSqlQuery query;
-
     query.prepare("INSERT INTO tbl_contact (name, family, phoneNumber, favority, gender) VALUES (:name, :family, :phoneNumber, :favority, :gender);");
     query.bindValue(":name", name);
     query.bindValue(":family", family);
@@ -182,7 +122,6 @@ bool Connection::newContact(const QString &name, const QString &family, const QS
 bool Connection::checkContact(const QString& phoneNumber)
 {
     QSqlQuery query;
-
     query.prepare("SELECT name, family, favority, gender FROM tbl_contact WHERE phoneNumber = :phone ;");
     query.bindValue(":phone", phoneNumber);
     query.exec();
@@ -219,7 +158,6 @@ bool Connection::deleteContactList(const QString &phoneNumber)
 void Connection::contactList()
 {
     QSqlQuery query;
-
     query.prepare("SELECT name, family, phoneNumber, favority, gender FROM tbl_contact ;");
     query.exec();
 

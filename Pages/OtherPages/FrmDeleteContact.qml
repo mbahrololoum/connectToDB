@@ -3,22 +3,22 @@ import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
 import QtQuick.Controls.Material 2.2
 
-import "../Componnet/Button" as MyButtonComponnent
+import "../Component/Button" as MyButtonComponent
 
 Item {
 
-    Component.onCompleted: searchClmOpacity.start()
+    Component.onCompleted: { flickableOpacity.start(); forceActiveFocus() }
 
-    NumberAnimation { id: showContactClmOpacity;   target: showContactClm; properties: "opacity"; from: 0.0; to: 1.0; duration: 700 }
-    NumberAnimation { id: hiddenContactClmOpacity; target: showContactClm; properties: "opacity"; from: 1.0; to: 0.0; duration: 700 }
+    NumberAnimation { id: showColumnLayoutOpacity;   target: columnLayout;   properties: "opacity"; from: 0.0; to: 1.0; duration: 700 }
+    NumberAnimation { id: hiddenColumnLayoutOpacity; target: columnLayout;   properties: "opacity"; from: 1.0; to: 0.0; duration: 700 }
 
-    NumberAnimation { id: showCheckBtnOpacity;     target: checkBtn;       properties: "opacity"; from: 0.0; to: 1.0; duration: 700 }
-    NumberAnimation { id: hiddencheckBtnOpacity;   target: checkBtn;       properties: "opacity"; from: 1.0; to: 0.0; duration: 700 }
+    NumberAnimation { id: showButtonOpacity;         target: checkBtn;       properties: "opacity"; from: 0.0; to: 1.0; duration: 700 }
+    NumberAnimation { id: hiddenButtonOpacity;       target: checkBtn;       properties: "opacity"; from: 1.0; to: 0.0; duration: 700 }
 
-    NumberAnimation { id: searchClmOpacity;        target: searchClm;      properties: "opacity"; from: 0.0; to: 1.0; duration: 700 }
+    NumberAnimation { id: flickableOpacity;          target: flickable;      properties: "opacity"; from: 0.0; to: 1.0; duration: 700 }
 
     Flickable {
-        id: searchClm
+        id: flickable
         anchors.fill: parent
         contentHeight: parent.height + 10
         opacity: 0
@@ -28,7 +28,6 @@ Item {
             spacing: 15
 
             Label {
-                id: titleWelcom
                 text: "Delete Contact"
                 font { family: myStyle.iranSanceFontL; pixelSize: 20 }
                 anchors.horizontalCenter: parent.horizontalCenter
@@ -36,10 +35,15 @@ Item {
             }
 
             Label {
-                text: "Please insert mobile  number for\ndelete contact."
+                text: "Please insert mobile  number for delete contact."
                 font { family: myStyle.iranSanceFontL; pixelSize: 14 }
                 anchors.horizontalCenter: parent.horizontalCenter
                 horizontalAlignment: Text.AlignLeft
+                verticalAlignment: Text.AlignTop
+                Layout.preferredWidth:  parent.width
+                Layout.preferredHeight: contentHeight
+                wrapMode: Label.WordWrap
+                lineHeight: 1
             }
 
             TextField {
@@ -47,22 +51,17 @@ Item {
                 placeholderText: qsTr("Phone Number")
                 font { family: myStyle.iranSanceFontL; pixelSize: 14 }
                 anchors.horizontalCenter: parent.horizontalCenter
-                Layout.preferredWidth: controlWidth
-                height: 45
                 horizontalAlignment: Text.AlignLeft
+                Layout.preferredWidth: controlWidth
                 validator: RegExpValidator { regExp: /(^(09)[0-9]{9}\\d$)/ }
                 inputMethodHints: Qt.ImhDialableCharactersOnly
                 focus: true
             }
 
-            MyButtonComponnent.CustomeButton {
+            MyButtonComponent.CustomeButton {
                 id: checkBtn
                 buttonText: "Check Contact"
-                enabled: true
-                buttonFontSize: 14
                 anchors.horizontalCenter: parent.horizontalCenter
-                width: controlWidth
-                buttonHeight: 35
                 onClicked: {
                     if(phoneNumberTxt.text.length !== 11)
                     {
@@ -73,14 +72,13 @@ Item {
                     }
                     if(connection.checkContact(phoneNumberTxt.text))
                     {
-                        nameTxt.text = objProfile.name
-                        familyTxt.text = objProfile.family
-                        favirotySw.checked = objProfile.favority
+                        nameTxt.text = objSearch .name
+                        familyTxt.text = objSearch.family
+                        favirotySw.checked = objSearch.favority
+                        objSearch.gender === "Male" ? maleRadio.checked = true : femaleRadio.checked = true
 
-                        objProfile.gender === "Male" ? maleRadio.checked = true : femaleRadio.checked = true
-
-                        showContactClmOpacity.start()
-                        hiddencheckBtnOpacity.start()
+                        showColumnLayoutOpacity.start()
+                        hiddenButtonOpacity.start()
                     }
                     else
                     {
@@ -92,7 +90,7 @@ Item {
             }
 
             ColumnLayout{
-                id: showContactClm
+                id: columnLayout
                 spacing: 15
                 opacity: 0
 
@@ -102,22 +100,9 @@ Item {
                     font { family: myStyle.iranSanceFontL; pixelSize: 14 }
                     anchors.horizontalCenter: parent.horizontalCenter
                     Layout.preferredWidth: controlWidth
-                    height: 45
                     horizontalAlignment: Text.AlignLeft
                     focus: true
                 }
-
-//                text: "Company insert mobile number masoud bahrololoum for delete contact."
-//                font { family: myStyle.iranSanceFontL; pixelSize: 14 }
-//                width: parent.width
-//                height: contentHeight + 10
-//                rightPadding: 10
-//                leftPadding: 10
-//                verticalAlignment: Text.AlignTop
-//                //horizontalAlignment: Text.AlignJustify
-//                //elide: Text.ElideRight
-//                wrapMode: Label.WordWrap
-//                lineHeight: 1
 
                 TextField {
                     id: familyTxt
@@ -125,9 +110,7 @@ Item {
                     font { family: myStyle.iranSanceFontL; pixelSize: 14 }
                     anchors.horizontalCenter: parent.horizontalCenter
                     Layout.preferredWidth: controlWidth
-                    height: 45
                     horizontalAlignment: Text.AlignLeft
-                    focus: true
                 }
 
                 RowLayout {
@@ -148,19 +131,16 @@ Item {
                 RowLayout {
                     spacing: 5
 
-                    MyButtonComponnent.CustomeButton {
+                    MyButtonComponent.CustomeButton {
                         id: myButtonDelete
                         buttonText: "Delete"
-                        enabled: true
                         buttonBackColor: Material.color(Material.Red)
-                        buttonFontSize: 14
                         width: controlWidth / 2
-                        buttonHeight: 35
                         onClicked: {
                             if(connection.deleteContact(phoneNumberTxt.text))
                             {
-                                hiddenContactClmOpacity.start()
-                                showCheckBtnOpacity.start()
+                                hiddenColumnLayoutOpacity.start()
+                                showButtonOpacity.start()
                                 phoneNumberTxt.text = ""
                                 messageDialog.title = "Delete"
                                 messageDialog.text  = "Information was Delete successfully"
@@ -175,15 +155,12 @@ Item {
                         }
                     }
 
-                    MyButtonComponnent.CustomeButton {
+                    MyButtonComponent.CustomeButton {
                         id: myButtonCancel
                         buttonText: "Cancel"
-                        enabled: true
                         buttonBackColor: Material.color(Material.Green)
-                        buttonFontSize: 14
                         width: controlWidth / 2
-                        buttonHeight: 35
-                        onClicked: { hiddenContactClmOpacity.start(); showCheckBtnOpacity.start() }
+                        onClicked: { hiddenColumnLayoutOpacity.start(); showButtonOpacity.start() }
                     }
                 }
             }

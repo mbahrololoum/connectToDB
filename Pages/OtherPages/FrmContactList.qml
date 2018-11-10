@@ -1,11 +1,10 @@
 import QtQuick 2.9
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
-import QtGraphicalEffects 1.0
 import QtQuick.Controls.Material 2.2
 import QtQuick.Dialogs 1.3
 
-import "../Componnet/Button" as MyButtonComponnent
+import "../Component/Button" as MyButtonComponent
 
 Item {
     Component.onCompleted: { connection.contactList(); opacityAnimation.start() }
@@ -48,8 +47,6 @@ Item {
         displayMarginBeginning: 400
         displayMarginEnd: 400
         ScrollIndicator.vertical: ScrollIndicator { }
-        // highlight: highlight
-        // highlightFollowsCurrentItem: false
         // highlight: Rectangle { color: "lightsteelblue"; radius: 5 }
         focus: true
         opacity: 0
@@ -71,34 +68,17 @@ Item {
         }
     }
 
-    MyButtonComponnent.CustomeButton {
+    MyButtonComponent.CustomeButton {
         id: btnDelete
         buttonText: "Delete Contact"
-        enabled: true
-        buttonFontSize: 14
         buttonBackColor: Material.color(Material.Red)
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.bottom: parent.bottom
-        anchors.bottomMargin: 10
-        width: controlWidth
-        buttonHeight: 35
+        anchors.bottom: parent.bottom; anchors.bottomMargin: 10
         onClicked: {
             messageDialog.title = "Question"
             messageDialog.text  = "Do you want delete contact?"
             messageDialog.standardButtons = StandardButton.Yes | StandardButton.No
             messageDialog.open()
-        }
-    }
-
-    Component {
-        id: highlight
-
-        Rectangle {
-            width: itemsListview.width; height: 40
-            color: "lightsteelblue"; radius: 5
-            y: itemsListview.currentItem.y
-
-            Behavior on y { SpringAnimation { spring: 3; damping: 0.2 } }
         }
     }
 
@@ -118,7 +98,6 @@ Item {
             Component.onCompleted: timer.running = true
 
             Image {
-                width: 130; height: 100
                 fillMode: Image.PreserveAspectFit
                 source: "/Image/profile/user-"+ lbPhoneNumber.text.substring(11,10) +".svg"
                 sourceSize: "30x30"

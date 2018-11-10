@@ -3,20 +3,20 @@ import QtQuick.Controls.Material 2.2
 
 Item {
     id: myBtn
-    width : parent.width
+    width : buttonWidth
     height: buttonHeight
 
     property alias  buttonText        : innerText.text;
-    property int    buttonHeight      : 40
-    property int    buttonBorderWide  : 0
-    property int    buttonFontSize    : 16
+    property int    buttonHeight      : 35
+    property int    buttonWidth       : controlWidth
     property int    buttonRadius      : 3
+    property int    buttonFontSize    : 14
+    property int    buttonBorderWide  : 0
     property color  buttonBorderColor : "transparent"
     property var    buttonBackColor   : Material.color(Material.Orange)
 
     signal clicked
 
-    //Rectangle to draw the button
     Rectangle {
         id: rectangleButton
         color: buttonBackColor

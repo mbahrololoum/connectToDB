@@ -3,43 +3,35 @@ import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
 
 import "../OtherPages"        as Pages
-import "../Componnet/Header"
-import "../Componnet/Drawer"
+import "../Component/Header"
+import "../Component/Drawer"
 
 Item {
     anchors.fill: parent
+    Component.onCompleted: forceActiveFocus()
+
     signal backClicked
 
     // Call Header Component
     Header { id: mainHeader; anchors.top: parent.top; width: parent.width; z:2 }
-    Drawer { id: drawer }
+    Drawer { id: drawer                                                        }
 
     StackView {
         id: stackView
         width: parent.width
         anchors.top: mainHeader.bottom
         anchors.bottom: parent.bottom
-        initialItem: defultPage
+        initialItem:  defultPage
         Keys.enabled: true
         Keys.priority: Keys.BeforeItem
         focus: true
 
         Keys.onReleased: {
-            //        if(event.key === Qt.Key_Back && depth != 1)
-            //        { event.accepted = true; managmentActivePage.pop(); stackView.pop() }
-        }
-
-        onDepthChanged: {
-            //            if(managmentActivePage[managmentActivePage.length-1]      === "Home"         ||
-            //                    managmentActivePage[managmentActivePage.length-1] === "GridCategory" ||
-            //                    managmentActivePage[managmentActivePage.length-1] === "SubCategory")
-            //                searchAnimation = false
-            //            else
-            //                searchAnimation = true
-
-            //            depthStack = depth
-            //            if(stackView.depth == 1)  mainHeader.visableBack = false
-            //            else                      mainHeader.visableBack = true
+            if(event.key === Qt.Key_Back && depth != 1)
+            {
+                event.accepted = true;
+                stackView.pop()
+            }
         }
     }
 

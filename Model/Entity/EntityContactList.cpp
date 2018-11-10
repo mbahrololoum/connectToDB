@@ -2,7 +2,6 @@
 
 EntityContactList::EntityContactList(QObject *parent) : QObject(parent)
 {
-
 }
 
 EntityContactList::EntityContactList(const QString& name, const QString& family, const QString& phoneNumber,
