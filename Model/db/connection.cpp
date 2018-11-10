@@ -42,10 +42,8 @@ bool Connection::openDatabase()
 
     if(mDatabase.open())
     {
-        QSqlQuery queryCheckTable("EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES  WHERE TABLE_NAME = tbl_users;");
-        if (!queryCheckTable.exec()) {
-            qDebug() << "NO Exist";
-
+        QSqlQuery queryCheckTable("SELECT name FROM sqlite_master WHERE type='table' AND name='tbl_users';");
+        if (queryCheckTable.exec()) {
             QSqlQuery query;
             query.prepare("CREATE TABLE tbl_users (username TEXT NOT NULL UNIQUE, password TEXT NOT NULL, name TEXT, Family TEXT, PRIMARY KEY (username) ); ");
             query.exec();
@@ -58,13 +56,9 @@ bool Connection::openDatabase()
             query3.prepare("INSERT INTO `tbl_users`(`username`,`password`,`name`,`family`) VALUES (:user, :pass, :name, :family )");
             query3.bindValue(":user", "09");
             query3.bindValue(":pass", "1");
-            query3.bindValue(":name", "Jon");
+            query3.bindValue(":name", "John");
             query3.bindValue(":family", "Smit");
             query3.exec();
-
-        }
-        else{
-            qDebug() << "Exist";
         }
         return true;
     }
@@ -80,7 +74,7 @@ void Connection::closeDatabase()
     mDatabase.close();
 }
 
-bool Connection::checkUser(QString user, QString pass)
+bool Connection::checkUser(const QString& user, const QString& pass)
 {
     //    QString query("SELECT COUNT(*) FROM tbl_users WHERE username = '%1' AND password = '%2' ;");
     //    query = query.arg(user).arg(pass);

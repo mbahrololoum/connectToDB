@@ -25,9 +25,9 @@ public:
     ~Connection();
     bool openDatabase();
     void closeDatabase();
-    Q_INVOKABLE bool checkUser(QString, QString );
+    Q_INVOKABLE bool checkUser(const QString& user, const QString& pass);
     Q_INVOKABLE void getSetting();
-    Q_INVOKABLE void setSetting(const bool &state, const QString &username, const QString &password);
+    Q_INVOKABLE void setSetting(const bool& state, const QString& username, const QString& password);
     Q_INVOKABLE bool newContact(const QString& name, const QString& family, const QString& phoneNumber, const QString& favority, const QString& gender);
     Q_INVOKABLE bool checkContact(const QString& phoneNumber);
     Q_INVOKABLE bool deleteContact(const QString& phoneNumber);

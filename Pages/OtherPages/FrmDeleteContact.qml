@@ -107,6 +107,18 @@ Item {
                     focus: true
                 }
 
+//                text: "Company insert mobile number masoud bahrololoum for delete contact."
+//                font { family: myStyle.iranSanceFontL; pixelSize: 14 }
+//                width: parent.width
+//                height: contentHeight + 10
+//                rightPadding: 10
+//                leftPadding: 10
+//                verticalAlignment: Text.AlignTop
+//                //horizontalAlignment: Text.AlignJustify
+//                //elide: Text.ElideRight
+//                wrapMode: Label.WordWrap
+//                lineHeight: 1
+
                 TextField {
                     id: familyTxt
                     placeholderText: qsTr("Family")

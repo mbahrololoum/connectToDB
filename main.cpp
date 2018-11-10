@@ -1,11 +1,10 @@
 #include <QQmlContext>
 #include <QGuiApplication>
-#include <QQmlContext>
 #include <QQmlApplicationEngine>
 
-#include <Model/db/connection.h>
-#include <Model/Entity/EntityContactList.h>
-#include <Model/Model/ModelContactList.h>
+#include "Model/db/connection.h"
+#include "Model/Entity/EntityContactList.h"
+#include "Model/Model/ModelContactList.h"
 
 int main(int argc, char *argv[])
 {

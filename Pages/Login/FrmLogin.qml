@@ -105,7 +105,7 @@ Item {
                     else
                     {
                         messageDialog.title = "Warning"
-                        messageDialog.text  = "Incorrect Username or password"
+                        messageDialog.text  = "Incorrect username or password"
                         messageDialog.open()
                     }
                 }
@@ -120,6 +120,7 @@ Item {
                 onCheckedChanged: connection.setSetting(checked, usernameTxt.text, passwordTxt.text)
             }
         }
+
         Label {
             id: lbCreateAccount
             text: qsTr("Copyright @ 2018 Example. All rights reserved.")
@@ -127,13 +128,6 @@ Item {
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.bottom: parent.bottom
             anchors.bottomMargin: 30
-
-            MouseArea {
-                anchors.fill: parent
-                onReleased: lbCreateAccount.scale = 1.0
-                onPressed:  lbCreateAccount.scale = 1.1
-                onClicked:  sigRegisterAccount()
-            }
         }
     }
 }

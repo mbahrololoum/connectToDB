@@ -109,7 +109,7 @@ Item {
                     else
                     {
                         messageDialog.title = "Error"
-                        messageDialog.text  = "Information could not be saved"
+                        messageDialog.text  = "Information could not saved"
                         messageDialog.open()
                     }
                 }
