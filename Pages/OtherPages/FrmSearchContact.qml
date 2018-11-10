@@ -29,7 +29,6 @@ Item {
             spacing: 15
 
             Label {
-                id: titleWelcom
                 text: "Search Contact"
                 font { family: myStyle.iranSanceFontL; pixelSize: 20 }
                 anchors.horizontalCenter: parent.horizontalCenter
@@ -122,14 +121,14 @@ Item {
                     spacing: 5
 
                     Label  { text: "Favority" }
-                    Switch { id: favirotySw;  }
+                    Switch { id: favirotySw   }
                 }
 
                 RowLayout {
                     spacing: 5
 
                     Label       { text: "gender"                                         }
-                    RadioButton { id: femaleRadio; enabled: false; text: qsTr("female")  }
+                    RadioButton { id: femaleRadio; enabled: false; text: qsTr("Female")  }
                     RadioButton { id: maleRadio;   enabled: false; text: qsTr("Male")    }
                 }
             }

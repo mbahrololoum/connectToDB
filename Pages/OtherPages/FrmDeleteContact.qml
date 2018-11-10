@@ -117,7 +117,7 @@ Item {
                     spacing: 5
 
                     Label  { text: "Favority" }
-                    Switch { id: favirotySw;  }
+                    Switch { id: favirotySw   }
                 }
 
                 RowLayout {

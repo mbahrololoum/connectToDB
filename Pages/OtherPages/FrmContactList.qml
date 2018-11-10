@@ -7,7 +7,7 @@ import QtQuick.Dialogs 1.3
 import "../Component/Button" as MyButtonComponent
 
 Item {
-    Component.onCompleted: { connection.contactList(); opacityAnimation.start() }
+    Component.onCompleted: { connection.contactList(); opacityAnimation.start(); forceActiveFocus() }
 
     property bool    refreshBusy: false
     property string  selectItems: ""

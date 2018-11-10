@@ -5,7 +5,6 @@ import QtQuick.Layouts 1.3
 import "../Component/Button" as MyButtonComponent
 
 Item {
-
     Component.onCompleted: { opacityAnimation.start(); forceActiveFocus() }
 
     NumberAnimation { id: opacityAnimation;  target: flickable; properties: "opacity"; from: 0.0; to: 1.0; duration: 700 }
@@ -34,7 +33,6 @@ Item {
                 font { family: myStyle.iranSanceFontL; pixelSize: 14 }
                 anchors.horizontalCenter: parent.horizontalCenter
                 Layout.preferredWidth: controlWidth
-                height: 45
                 horizontalAlignment: Text.AlignLeft
                 focus: true
             }
@@ -45,9 +43,7 @@ Item {
                 font { family: myStyle.iranSanceFontL; pixelSize: 14 }
                 anchors.horizontalCenter: parent.horizontalCenter
                 Layout.preferredWidth: controlWidth
-                height: 45
                 horizontalAlignment: Text.AlignLeft
-                focus: true
             }
 
             TextField {
@@ -56,18 +52,16 @@ Item {
                 font { family: myStyle.iranSanceFontL; pixelSize: 14 }
                 anchors.horizontalCenter: parent.horizontalCenter
                 Layout.preferredWidth: controlWidth
-                height: 45
                 horizontalAlignment: Text.AlignLeft
                 validator: RegExpValidator { regExp: /(^(09)[0-9]{9}\\d$)/ }
                 inputMethodHints: Qt.ImhDialableCharactersOnly
-                focus: true
             }
 
             RowLayout {
                 spacing: 5
 
-                Label  { text: "Favority" }
-                Switch { id: favirotySw; checked: false    }
+                Label  { text: "Favority"               }
+                Switch { id: favirotySw; checked: false }
             }
 
             RowLayout {

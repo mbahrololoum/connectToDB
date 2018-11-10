@@ -1,4 +1,4 @@
-import QtQuick 2.10
+import QtQuick 2.9
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
 
@@ -37,8 +37,8 @@ Flickable{
             color: "transparent"
 
             Rectangle {
-                width:  (parent.width < 400 ) ? parent.width  - 10 : 130
-                height: (parent.width < 400 ) ? parent.height - 10 : 130
+                width:  ( parent.width < 400 ) ? parent.width  - 10 : 130
+                height: ( parent.width < 400 ) ? parent.height - 10 : 130
                 radius: 10
                 anchors.top: parent.top
                 anchors.topMargin: 10
